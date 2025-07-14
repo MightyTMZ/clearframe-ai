@@ -10,7 +10,8 @@ videos = os.listdir(video_dir)
 count = 1
 
 for video in videos:
-    output_dir = os.path.join(video_dir, video[:-4])    
+    output_dir = os.path.join(video_dir, video[:-4])   
+    os.makedirs(output_dir, exist_ok=True) 
     cap = cv2.VideoCapture(os.path.join(video_dir, video))
     if not cap.isOpened():
         print("Failed to open {video}")
