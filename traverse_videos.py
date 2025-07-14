@@ -10,12 +10,31 @@ videos = os.listdir(video_dir)
 count = 1
 
 for video in videos:
-    os.rename(f"{video_dir}/{video}", f"{video_dir}/video_{count}.mp4")
-    count += 1
+    output_dir = os.path.join(video_dir, video[:-4])    
+    cap = cv2.VideoCapture(os.path.join(video_dir, video))
+    if not cap.isOpened():
+        print("Failed to open {video}")
     
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    # duration = total_frames / fps
+    frame_interval = int(fps * interval)
+    
+    video_name = os.path.splitext(os.path.basename(video))[0]
+    frame_idx = 0
+    snapshot_idx = 0
 
-    # cap = cv2.VideoCapture(video)
-    # if not cap.isOpened():
-    #     print("Failed to open {video}")
-    
-    # fp
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        if frame_idx % frame_interval == 0:
+            snapshot_name = f"{video_name}_snapshot_{snapshot_idx:04d}.jpg"
+            cv2.imwrite(os.path.join(output_dir, snapshot_name), frame)
+            snapshot_idx += 1
+
+        frame_idx += 1
+
+    cap.release()
+    print(f"Finished processing {video}")
