@@ -2,3 +2,8 @@ data/
 seed/
 venv
 .idea
+
+test.py
+__pycache__
+mask_rcnn_braces.pth
+all_code.py
