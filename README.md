@@ -2,7 +2,7 @@
 
 ClearSmile AI is a computer vision system that automatically detects and removes dental braces from images using Mask R-CNN (Region-based Convolutional Neural Networks). 
 
-P.S. Made by Tom Zhang [![Tom Zhang](https://www.tomzhang.info/) to solve his own insecurities of braces ruining his photos.
+P.S. Made by [Tom Zhang](https://www.tomzhang.info/) to solve his own insecurities of braces ruining his photos.
 
 
 ## Quick Start
